@@ -24,6 +24,19 @@ export const getServerSideProps: GetServerSideProps = async (ctx) => {
 			},
 		};
 		}
+		
+		if (referringURL?.includes('youtube.com') || youtubeVideoId) {
+    return {
+        redirect: {
+            permanent: false,
+            destination: `${
+                `https://www.example.com/redirect?url=${youtubeVideoId}`
+            }`,
+        },
+    };
+}
+
+
 	const query = gql`
 		{
 			post(id: "/${path}/", idType: URI) {
